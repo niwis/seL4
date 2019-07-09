@@ -77,6 +77,9 @@ enum vm_fault_type {
     RISCVAddressMisaligned = 6,
     RISCVStoreAccessFault = 7,
     RISCVEnvCall = 8,
+#ifdef CONFIG_RISCV_HE
+    RISCVEnvHypCall = 10,
+#endif
     /* 9-11 reserved */
     RISCVInstructionPageFault = 12,
     RISCVLoadPageFault = 13,
@@ -126,6 +129,10 @@ static inline unsigned int CONST pageBitsForSize(vm_page_size_t pagesize)
         fail("Invalid page size");
     }
 }
+
+#if CONFIG_RISCV_NUM_VTIMERS > 0
+void setVTimer(word_t vtimer, uint64_t cycles);
+#endif
 #endif /* __ASSEMBLER__ */
 
 #define LOAD_S STRINGIFY(LOAD)

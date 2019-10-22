@@ -356,7 +356,6 @@ static inline uint64_t get_cycles(void)
     return n;
 }
 #endif
-}
 
 static inline int read_current_timer(unsigned long *timer_val)
 {
